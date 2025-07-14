@@ -36,7 +36,7 @@ const malla = [
       "Microbiología",
       "Atención Primaria en Salud",
       "Histología",
-      "Neurosciencia",
+      "Neurociencia",
       "Bioquímica II",
       "Metodología de la Investigación",
     ],
