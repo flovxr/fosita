@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Comfortaa', cursive;
+  background: #d7eafc; /* celeste más pastel y suave */
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Fondo con partículas blancas animadas */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.4) 2px, transparent 8px),
+              radial-gradient(circle at 80% 40%, rgba(255,255,255,0.3) 2px, transparent 6px),
+              radial-gradient(circle at 50% 80%, rgba(255,255,255,0.2) 3px, transparent 9px);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: shimmer 10s linear infinite;
+  z-index: 0;
+}
+
+@keyframes shimmer {
+  0% {background-position: 0 0, 0 0, 0 0;}
+  100% {background-position: 200px 200px, 200px 200px, 200px 200px;}
+}
+
+/* Título principal */
+.title {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 3rem;
+  color: #264d9b; /* azul oscuro */
+  text-shadow: 0 0 8px #a4c0f9;
+}
+
+/* Grid container para semestres */
+.grid {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 0 10px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Cada semestre */
+.semestre {
+  background: #ffffff; /* blanco */
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 6px 12px rgba(38, 77, 155, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+.semestre:hover {
+  box-shadow: 0 8px 20px rgba(38, 77, 155, 0.4);
+}
+
+/* Título semestre */
+.semestre h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #264d9b; /* azul oscuro */
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-shadow: 0 0 6px #a4c0f9;
+}
+
+/* Lista de materias */
+.materia-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+
+/* Cada materia */
+.materia {
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 3px 5px rgba(38, 77, 155, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #264d9b; /* azul oscuro texto */
+  background: #e6f0fc; /* celeste pastel clarito para ramos listos */
+}
+
+/* Ramos disponibles (antes de marcar) */
+.materia.disponible:not(.aprobada) {
+  background: #f8d7e9; /* rosado pastel */
+  color: #7a407b; /* morado oscuro para texto */
+}
+
+/* Ramos bloqueados */
+.materia.bloqueada {
+  background: #cab9dc; /* morado pastel */
+  color: #6b4f7f; /* morado más oscuro para texto */
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Estado aprobado */
+.materia.aprobada {
+  background: #e6f0fc; /* celeste pastel clarito */
+  color: #264d9b; /* azul oscuro */
+  box-shadow: 0 0 12px 3px #a4c0f9;
+  font-weight: 700;
+  position: relative;
+}
+
+.materia.aprobada::after {
+  content: '✓';
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: #264d9b;
+  margin-left: 8px;
+  user-select: none;
+}
+
+/* Animación al marcar */
+.materia.aprobada {
+  animation: pulseGlow 1s ease forwards;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 #a4c0f9;
+  }
+  50% {
+    box-shadow: 0 0 10px 4px #a4c0f9;
+  }
+  100% {
+    box-shadow: 0 0 0 0 #a4c0f9;
+  }
+}
+
+/* Scroll en dispositivos pequeños */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
